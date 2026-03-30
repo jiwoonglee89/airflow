@@ -9,7 +9,7 @@ from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.sdk import DAG
 
 with DAG(
-    dag_id="example_bash_operator",
+    dag_id="dags_bash_operator",
     schedule="0 0 * * *",
     start_date=pendulum.datetime(2023, 3, 1, tz="Asia/Seoul"),
     catchup=False, #위에 2023년 3월 1일일 때 1월 1일부터 3월 1일까지 돌릴것인지 설정, 1/1~2/28 한꺼번에 실행
