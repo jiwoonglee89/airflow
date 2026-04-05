@@ -1,4 +1,4 @@
-from common.common_func import regist
+from common.common_func import regist2
 import pendulum
 
 # Airflow 3.0 부터 아래 경로로 import 합니다.
