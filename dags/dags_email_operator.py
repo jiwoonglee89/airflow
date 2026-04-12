@@ -16,7 +16,7 @@ with DAG(
     send_email_task = EmailOperator(
         task_id='send_email_task',
         conn_id='conn_smtp_gmail',      # Airflow 3.0 실습부터 추가
-        to='leewo1001@gmail.com',       # 본인의 메일 계정으로 변경해주세요.
+        to='qs1001@naver.com',       # 본인의 메일 계정으로 변경해주세요.
         subject='Airflow 성공메일',
         html_content='Airflow 작업이 완료되었습니다'
     )
