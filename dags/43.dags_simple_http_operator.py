@@ -5,7 +5,7 @@ from airflow.sdk import DAG, task
 
 with DAG(
     dag_id = 'dags_simple_http_operator',
-    start_date = pendulum.datetime(2023,4,1, tz='Aisa/Seoul'),
+    start_date = pendulum.datetime(2023,4,1, tz='Asia/Seoul'),
     catchup=False,
     schedule=None
 ) as dag:
