@@ -7,7 +7,8 @@ from airflow.sdk import DAG
 # Airflow 2.10.5 이하 버전에서 실습시 아래 경로에서 import 하세요.
 #from airflow import DAG
 
-SeoulApiToCsvOperator = importlib.import_module("operators.45_seoul_api_to_csv_operator")
+module = importlib.import_module("operators.45_seoul_api_to_csv_operator")
+SeoulApiToCsvOperator = module.SeoulApiToCsvOperator
 
 with DAG(
     dag_id='dags_seoul_api_corona',
