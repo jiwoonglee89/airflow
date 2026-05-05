@@ -1,4 +1,4 @@
-from airflow.hooks.base import BaseHook
+from airflow.sdk.bases.hook import BaseHook
 import pandas as pd
 from airflow.models import BaseOperator
 
