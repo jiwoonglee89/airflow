@@ -1,5 +1,5 @@
 #from airflow.sensors.base import BaseSensorOperator
-from airflow.sdk.bases import BaseSensorOperator
+from airflow.sdk import BaseSensorOperator
 from airflow.hooks.base import BaseHook
 
 '''
