@@ -4,7 +4,7 @@ import importlib
 # Airflow 3.0 부터 아래 경로로 import 합니다.
 from airflow.sdk import DAG
 
-module = importlib.import_module("sensors.56_seoul_api_date_sensor")
+module = importlib.import_module("sensors.57_seoul_api_date_sensor")
 SeoulApiDateSensor = module.SeoulApiDateSensor
 
 with DAG(
