@@ -11,7 +11,7 @@ from airflow.hooks.base import BaseHook
 
 class SeoulApiDateSensor(BaseSensorOperator):
     template_fields = ('endpoint',)
-    def __int__(self, dataset_nm, base_dt_col, day_off = 0, **kwargs):
+    def __init__(self, dataset_nm, base_dt_col, day_off=0, **kwargs):
         '''
         dataset_nm: 서울시 공공데이터 포털에서 센싱하고자 하는 데이터셋 명
         base_dt_col: 센싱 기준 컬럼 (yyyy.mm.dd... or yyyy/mm/dd... 형태만 가능)
@@ -19,22 +19,22 @@ class SeoulApiDateSensor(BaseSensorOperator):
         '''
         super().__init__(**kwargs)
         self.http_conn_id = 'openapi.seoul.go.kr'
-        self.endpoint='{{var.value.apikey_openapi_seoul_go_kr}}/json/'+dataset_nm+'/1/100'
-        self.base_dt_col=base_dt_col
-        self.day_off=day_off
+        self.endpoint = '{{var.value.apikey_openapi_seoul_go_kr}}/json/' + dataset_nm + '/1/100'   # 100건만 추출
+        self.base_dt_col = base_dt_col
+        self.day_off = day_off
 
+        
     def poke(self, context):
         import requests
         import json
         from dateutil.relativedelta import relativedelta
-
         connection = BaseHook.get_connection(self.http_conn_id)
         url = f'http://{connection.host}:{connection.port}/{self.endpoint}'
-        self.log.info(f'request url : {url}')
+        self.log.info(f'request url:{url}')
         response = requests.get(url)
 
         contents = json.loads(response.text)
-        key_nm = list(contents.key())[0]
+        key_nm = list(contents.keys())[0]
         row_data = contents.get(key_nm).get('row')
         last_dt = row_data[0].get(self.base_dt_col)
         last_date = last_dt[:10]
